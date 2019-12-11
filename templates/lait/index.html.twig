@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lait index{% endblock %}
+
+{% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Laits</span></div>                                       
+
+                </div>
+
+            </div>
+
+        </div>
+<section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="table-responsive">
+
+    <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Vache</th>
+                <th>Quantite</th>
+                <th>Date_production</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lait in laits %}
+            <tr>
+                <td>{{ lait.bovin }}</td>
+                <td>{{ lait.quantite }}</td>
+                <td>{{ lait.dateProduction ? lait.dateProduction|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('lait_show', {'id': lait.id}) }}">show</a>
+                    <a href="{{ path('lait_edit', {'id': lait.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+                </div>
+
+            </div>
+
+        </section>
+    <a href="{{ path('lait_new') }}">Create new</a>
+{% endblock %}

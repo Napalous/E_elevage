@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.libelle, {attr : {'placeholder': "Exemple: Sahelienne"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.photo, {attr : {'placeholder': "Exemple: Image"}}) }}
+	</div>
+    <button class="btn btn-secondary btn-block btn-lg">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

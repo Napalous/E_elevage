@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.nbre_mise_bas, {attr : {'placeholder': "Exemple: 10"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.nbre_veau, {attr : {'placeholder': "Exemple: 10"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.nbre_vivant, {attr : {'placeholder': "Exemple: 5"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.nbre_mort, {attr : {'placeholder': "Exemple: 5"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.taux_production, {attr : {'placeholder': "Exemple: 50%"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.taux_mortalite, {attr : {'placeholder': "Exemple: 50%"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.date_production, {attr : {'placeholder': "Exemple: Traitement"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.bovin, {attr : {'placeholder': "Exemple: 1000"}}) }}
+	</div>
+    <button class="btn btn-secondary btn-block btn-lg">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

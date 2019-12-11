@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.type, {attr : {'placeholder': "Exemple: Boucherie"}}) }}
+	</div>
+    <button class="btn btn-secondary btn-block btn-lg">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

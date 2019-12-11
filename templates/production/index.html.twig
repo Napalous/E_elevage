@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Production index{% endblock %}
+
+{% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Liste des productions</span></div>                                       
+
+                </div>
+
+            </div>
+
+        </div>
+<section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="table-responsive">
+
+    <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>N° Vache</th>
+                <th>Nbre_mise_bas</th>
+                <th>Nbre_veau</th>
+                <th>Nbre_vivant</th>
+                <th>Nbre_mort</th>
+                <th>Taux_production</th>
+                <th>Taux_mortalite</th>
+                <th>Date_production</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for production in productions %}
+            <tr>
+                <td>{{ production.bovin }}</td>
+                <td>{{ production.nbreMiseBas }}</td>
+                <td>{{ production.nbreVeau }}</td>
+                <td>{{ production.nbreVivant }}</td>
+                <td>{{ production.nbreMort }}</td>
+                <td>{{ production.nbreVeau*100/cpt }}%</td>
+                <td>{{ production.nbreMort*100/cpt }}%</td>
+                <td>{{ production.dateProduction ? production.dateProduction|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('production_show', {'id': production.id}) }}">show</a>
+                    <a href="{{ path('production_edit', {'id': production.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+                </div>
+
+            </div>
+
+        </section>
+    <a href="{{ path('production_new') }}">Create new</a>
+{% endblock %}

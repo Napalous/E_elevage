@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('style.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/dark.css') }}" type="text/css" />
+
+	<!-- Agency Demo Specific Stylesheet -->
+	<link rel="stylesheet" href="{{ asset('demos/agency/agency.css') }}" type="text/css" />
+	<!-- / -->
+
+	<link rel="stylesheet" href="{{ asset('css/font-icons.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/animate.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css" />
+
+	<link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/components/bs-datatable.css') }}" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1 , maximum-scale=1" />
+
+	<link rel="stylesheet" href="{{ asset('css/colors.php?color=c0bb62') }}" type="text/css" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body class="stretched">
+        <div id="wrapper" class="clearfix">
+            <header id="header" class="sticky-style-2">
+
+			<div class="container clearfix">
+
+				<!-- Logo
+				============================================= -->
+				<div id="logo" class="divcenter">
+					<a href="{{ path('home')}}" class="standard-logo"><img class="divcenter" src="{{ asset('demos/agency/images/logo-agency.png') }}" alt="Canvas Logo"></a>
+					<a href="{{ path('home')}}" class="retina-logo"><img class="divcenter" src="{{ asset('demos/agency/images/logo-agency@2x.png') }}" alt="Canvas Logo"></a>
+				</div><!-- #logo end -->
+
+			</div>
+
+			<div id="header-wrap">
+
+				<!-- Primary Navigation
+				============================================= -->
+				<nav id="primary-menu" class="style-2 center">
+
+					<div class="container clearfix">
+
+						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+						<ul>
+							<li class="current"><a href="{{ path('home')}}"><div>Accueil</div></a>							
+							</li>
+							<li><a href="#"><div>Bovin</div></a>
+								<ul>
+									<li><a href="#"><div><i class="icon-stack"></i>Race</div></a>
+										<ul>
+											<li><a href="#"><div>Lister</div></a>											
+											</li>
+											<li><a href="#"><div>Nouvelle</div></a>									
+											</li>											
+										</ul>
+									</li>	
+									<li><a href="#"><div><i class="icon-stack"></i>Type</div></a>
+										<ul>
+											<li><a href="#"><div>Lister</div></a>											
+											</li>
+											<li><a href="#"><div>Nouvelle</div></a>									
+											</li>											
+										</ul>
+									</li>																	
+									
+								</ul>
+							</li>
+							<li><a href="#"><div>Production</div></a>
+								<ul>
+									<li><a href="#"><div><i class="icon-stack"></i>Animale</div></a>
+										<ul>
+											<li><a href="#"><div>Nouvelle</div></a>									
+											</li>
+											<li><a href="#"><div>Lister</div></a>											
+											</li>																						
+										</ul>
+									</li>	
+									<li><a href="#"><div><i class="icon-stack"></i>Laitière</div></a>
+										<ul>
+											<li><a href="#"><div>Nouvelle</div></a>									
+											</li>
+											<li><a href="#"><div>Lister</div></a>											
+											</li>																						
+										</ul>
+									</li>	
+									<li><a href="#"><div><i class="icon-stack"></i>Statistique</div></a>
+										<ul>
+											<li><a href="#"><div>Nouvelle</div></a>											
+											</li>
+											<li><a href="#"><div>Lister</div></a>									
+											</li>											
+										</ul>
+									</li>																
+									
+								</ul>
+							</li>
+							<li><a href="#"><div>Santé</div></a>
+								<ul>
+									<li><a href="#"><div><i class="icon-stack"></i>Fiche Médicale</div></a>
+										<ul>
+											<li><a href="#"><div>Nouvelle</div></a>									
+											</li>
+											<li><a href="#"><div>Lister</div></a>											
+											</li>																						
+										</ul>
+									</li>	
+									<li><a href="#"><div><i class="icon-stack"></i>Traitement</div></a>
+										<ul>
+											<li><a href="#"><div>Nouvelle</div></a>									
+											</li>
+											<li><a href="#"><div>Lister</div></a>											
+											</li>																						
+										</ul>
+									</li>																	
+									
+								</ul>
+							</li>
+							<li><a href="#"><div>Produits</div></a>
+								<ul>
+									<li><a href="#"><div><i class="icon-stack"></i>Catégorie</div></a>
+										<ul>
+											<li><a href="#"><div>Nouvelle</div></a>											
+											</li>
+											<li><a href="#"><div>Lister</div></a>									
+											</li>											
+										</ul>
+									</li>
+									<li><a href="#"><div><i class="icon-stack"></i>Voir Commande</div></a>
+								</ul>						
+							</li>
+							<li><a href="#"><div>Réunion</div></a>
+								<ul>
+									<li><a href="#"><div>Nouvelle</div></a></li>
+									<li><a href="#"><div>Lister</div></a></li>																															
+								</ul>								
+							</li>														
+						</ul>
+	
+					</div>
+
+				</nav><!-- #primary-menu end -->
+
+			</div>
+
+		</header>
+            {% block body %}{% endblock %}
+            <footer id="footer">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+					<div class="col_half">
+						Copyrights &copy; 2014 All Rights Reserved by Canvas Inc.<br>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-light si-rounded si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-light si-rounded si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-light si-rounded si-gplus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-light si-rounded si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-light si-rounded si-vimeo">
+								<i class="icon-vimeo"></i>
+								<i class="icon-vimeo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-light si-rounded si-github">
+								<i class="icon-github"></i>
+								<i class="icon-github"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-light si-rounded si-yahoo">
+								<i class="icon-yahoo"></i>
+								<i class="icon-yahoo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-light si-rounded si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+
+						<div class="clear"></div>
+
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer>
+        </div>
+        <div id="gotoTop" class="icon-angle-up"></div>
+        <script src="{{ asset('js/jquery.js') }}"></script>
+	    <script src="{{ asset('js/plugins.js') }}"></script>
+	    <script src="{{ asset('js/functions.js') }}"></script>   
+	    <script src="{{ asset('js/components/bs-datatable.js') }}"></script> 
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+		<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+	    <style>
+		.file-caption.icon-visible .file-caption-name {
+			font-family: 'Lato', sans-serif;
+			color: #666;
+		}
+	.form-process {
+		position: absolute;
+		-webkit-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+		background-image: none;
+	}
+
+	.form-process > div { background-color: #999;  }
+
+	.form-process,
+	#template-contactform-submitted,
+	.template-contactform-complete .form-process {
+		display: none;
+		opacity: 0;
+		background-color: rgba(255,255,255,0.7);
+	}
+
+	.template-contactform-processing .form-process {
+		display: block;
+		opacity: 1;
+	}
+	</style>  
+	    <script>
+
+		$(document).ready(function() {
+			$('#datatable1').dataTable();
+		});
+
+	</script>      
+    </body>
+    {% block javascripts %}{% endblock %}
+</html>
+

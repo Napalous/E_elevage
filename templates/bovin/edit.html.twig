@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Bovin{% endblock %}
+
+{% block body %}
+    <h1>Edit Bovin</h1>
+
+    {{ include('bovin/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('bovin_index') }}">back to list</a>
+
+    {{ include('bovin/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.numero_ordre, {attr : {'placeholder': "Exemple: 1000"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.sexe, {attr : {'placeholder': "Exemple: F"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.date_naissance, {attr : {'placeholder': "Exemple: Sahelienne"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.categories, {attr : {'placeholder': "Exemple: Moyenne"}}) }}
+	</div>
+		<div class="col-12 bottommargin-sm">
+		{{ form_row(form.races, {attr : {'placeholder': "Exemple: Sahelienne"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.types, {attr : {'placeholder': "Exemple: Boucherie"}}) }}
+	</div>
+	<div class="col-12 bottommargin-sm">
+		{{ form_row(form.bovin, {attr : {'placeholder': "Exemple: Mère"}}) }}
+	</div>
+    <button class="btn btn-secondary btn-block btn-lg">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Production{% endblock %}
+
+{% block body %}
+    <h1>Production</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ production.id }}</td>
+            </tr>
+            <tr>
+                <th>Nbre_mise_bas</th>
+                <td>{{ production.nbreMiseBas }}</td>
+            </tr>
+            <tr>
+                <th>Nbre_veau</th>
+                <td>{{ production.nbreVeau }}</td>
+            </tr>
+            <tr>
+                <th>Nbre_vivant</th>
+                <td>{{ production.nbreVivant }}</td>
+            </tr>
+            <tr>
+                <th>Nbre_mort</th>
+                <td>{{ production.nbreMort }}</td>
+            </tr>
+            <tr>
+                <th>Taux_production</th>
+                <td>{{ production.tauxProduction }}</td>
+            </tr>
+            <tr>
+                <th>Taux_mortalite</th>
+                <td>{{ production.tauxMortalite }}</td>
+            </tr>
+            <tr>
+                <th>Date_production</th>
+                <td>{{ production.dateProduction ? production.dateProduction|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('production_index') }}">back to list</a>
+
+    <a href="{{ path('production_edit', {'id': production.id}) }}">edit</a>
+
+    {{ include('production/_delete_form.html.twig') }}
+{% endblock %}
