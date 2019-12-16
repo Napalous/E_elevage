@@ -162,17 +162,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form class="form">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Téléphone</label>
-            <input type="text" class="form-control" id="tel" required>
-          </div>       
-        </form>
-      </div>
-      <div class="modal-footer">
+            <input type="text" name="tel" class="form-control" id="tel" required>
+          </div>  
+          <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
         <button id="submit" class="btn btn-primary">Valider</button>
+      </div>     
+        </form>
       </div>
+      
     </div>
   </div>
 </div>
@@ -249,8 +250,9 @@
   <script src="{{ asset('commerce/js/google-map.js') }}"></script>
   <script src="{{ asset('commerce/js/main.js') }}"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="{{ asset('client/app.js') }}"></script>
 
-<script>
+<!--script>
 
         var span = document.getElementsByClassName("close")[0];
         var modal = document.getElementById('exampleModalCenter');
@@ -305,8 +307,8 @@ document.getElementById("submit").addEventListener("click", function(e){
       
     }
 
-    xhttp.open("POST","http://localhost:8000/addClient/"+`${tel}`,true);
-    xhttp.responseType = "json";
+    xhttp.open("POST","http://localhost:8000/addClient/",true);
+    xhttp.responseType = "json";  
     let parm = `${tel}`;
     xhttp.send(parm); 
   }
@@ -315,7 +317,7 @@ document.getElementById("submit").addEventListener("click", function(e){
 
 });
         
-    </script>
+    </script-->
   <script>
 		$(document).ready(function(){
 

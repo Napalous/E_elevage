@@ -35,7 +35,18 @@ class RaceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $race->getPhoto();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $filename
+                );
+            } catch (FileException $th) {
+                //throw $th;
+            }
             $entityManager = $this->getDoctrine()->getManager();
+            $race->setPhoto($filename);
             $entityManager->persist($race);
             $entityManager->flush();
 

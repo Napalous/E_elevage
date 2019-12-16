@@ -95,4 +95,48 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user_index');
     }
+
+    
+    /**
+     * @Route("/bloquer", name="user_bloquer", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function bloquer(Request $request): Response
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $id = $_POST['id'];
+            $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+            if($user)
+            {
+                if($user->getActive())
+                {
+                    $user->setActive(false);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($user);
+                    $em->flush();
+                    return new JsonResponse([
+                        'status' => 'success',
+                        'message' => "L'utilisateur est bloqué"
+                    ]);
+                }
+                else
+                {
+                    $user->setActive(true);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($user);
+                    $em->flush();
+                    return new JsonResponse([
+                        'status' => 'success',
+                        'message' => "L'utilisateur est activé"
+                    ]);
+                }
+            }
+            return new JsonResponse([
+                'status' => 'error',
+                'message' => "L'utilisateur n'existe pas"
+            ]);
+        }
+    }
 }

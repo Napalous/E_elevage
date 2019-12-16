@@ -14,18 +14,29 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('roles', ChoiceType::class, [
-            'choices' => [                    
-                'Administrateur' => 'ROLE_ADMINISTRATEUR',
-                'Responsable' => 'ROLE_RESPONSABLE',
-                'vétérinaire' => 'ROLE_VETERINAIRE',
-                'Livreur' => 'ROLE_LIVREUR',
-            ]
-            ])
+            ->add('email')            
             ->add('nom')
             ->add('prenom')
             ->add('adresse')
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Administrateur' => 'ROLE_ADMINISTRATEUR',
+                    'Vétérinaire' => 'ROLE_VETERINAIRE',
+                    'Responsable' => 'ROLE_RESPONSABLE',
+                    'Livreur' => 'ROLE_LIVREUR',                    
+                    'Default' => null,
+                ],
+                'choice_label' => function ($choice, $key, $value) {
+                    if (true === $choice) {
+                        return 'Definitely!';
+                    }
+            
+                    return strtoupper($key);
+            
+                    // or if you want to translate some key
+                    //return 'form.choice.'.$key;
+                },
+            ])
             ->add('tel')            
             ->add('password',PasswordType::class,[
                 'label'=> "Mot de Passe",

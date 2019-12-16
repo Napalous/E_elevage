@@ -35,8 +35,8 @@
         <tbody>
         {% for race in races %}
             <tr>
-                <td>{{ race.libelle }}</td><img src="{{ race.photo }}">
-                <td class="image-prod"><div class="img" style="background-image:url('{{ race.photo }}');"></div></td>
+                <td>{{ race.libelle }}</td>
+                <td width="50" height="50"><img class="user-image" src="{{ asset('uploads/images/')}}{{ race.photo }}" alt="groupe" ></td>
                 <td>
                     <a href="{{ path('race_show', {'id': race.id}) }}">show</a>
                     <a href="{{ path('race_edit', {'id': race.id}) }}">edit</a>

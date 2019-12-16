@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * @Route("/produit")
@@ -35,7 +36,19 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $produit->getPhoto();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $filename
+                );
+            } catch (FileException $th) {
+                //throw $th;
+            }
             $entityManager = $this->getDoctrine()->getManager();
+            $produit->setPhoto($filename);
             $entityManager->persist($produit);
             $entityManager->flush();
 
@@ -67,6 +80,17 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $produit->getPhoto();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $filename
+                );
+            } catch (FileException $th) {
+                //throw $th;
+            }
+            $produit->setPhoto($filename);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('produit_index');

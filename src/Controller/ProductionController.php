@@ -43,6 +43,14 @@ class ProductionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $production->setNbreMort($production->getNbreMort());
+            $production->setNbreVivant(0);
+            $production->setNbreVeau(0);
+            $production->setNbreMiseBas(0);
+            $production->setTauxProduction(0);
+            $production->setTauxMortalite(0);
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($production);
             $entityManager->flush();
@@ -73,11 +81,29 @@ class ProductionController extends AbstractController
     {
         $form = $this->createForm(ProductionType::class, $production);
         $form->handleRequest($request);
-
+        /*dump($production->getNbreVeau());
+        dump($production->getNbreMiseBas());
+        dump($production->getNbreVivant()-$production->getNbreMort());
+        dump($production->getNbreMort());
+        die();*/
+        //$prod = new Production();
         if ($form->isSubmitted() && $form->isValid()) {
+            if($production->getNbreVivant() > $production->getNbreMort() ){
+            $production->setNbreVivant($production->getNbreVivant()-$production->getNbreMort());
+            $production->setNbreMort($production->getNbreMort());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('production_index');
+            }
+            else {
+            //$production->setNbreVivant($production->getNbreVivant()-$production->getNbreMort());
+            $production->setNbreVivant(0);
+            $production->setNbreMort($production->getNbreMort());
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('production_index');
+            }
+            
         }
 
         return $this->render('production/edit.html.twig', [

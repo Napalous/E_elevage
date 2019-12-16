@@ -38,6 +38,11 @@ class Produit
      */
     private $detailsCommandes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
+
     public function __construct()
     {
         $this->detailsCommandes = new ArrayCollection();
@@ -111,6 +116,18 @@ class Produit
                 $detailsCommande->setProduits(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
 
         return $this;
     }

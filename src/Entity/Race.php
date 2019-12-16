@@ -5,9 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RaceRepository")
+ * @UniqueEntity("libelle")
  */
 class Race
 {
@@ -24,7 +28,9 @@ class Race
     private $libelle;
 
     /**
-     * @ORM\Column(type="blob")
+     * @ORM\Column(type="string",length=255)
+     * @Assert\Image(mimeTypes="image/*" )
+     *     
      */
     private $photo;
 
@@ -60,7 +66,7 @@ class Race
         return $this->photo;
     }
 
-    public function setPhoto($photo): self
+    public function setPhoto($photo)
     {
         $this->photo = $photo;
 

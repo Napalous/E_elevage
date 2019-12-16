@@ -17,16 +17,20 @@
     			{% for produit in produits %}
     			<div class="col-md-6 col-lg-3 ftco-animate">                
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Produit">
+    					<a href="#" class="img-prod"><img class="img-fluid" width="270" height="50px" src="{{ asset('uploads/images/')}}{{ produit.photo }}" alt="Produit">
     						
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
     						<h3><a href="#">{{ produit.libelle }}</a></h3>
 							<h5><a href="#">{{ produit.categories.libelle }}</a></h5>
+							{% if produit.categories.libelle == "laitière" %}
+								<h8><a href="#">Quantité en stock {{ stocks[0].quantite }}L</a></h8>
+							{% endif %}
+							
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span class="price-sale">{{ produit.prix }} FCFA</span></p>
+		    						<p class="price"><span class="price-sale">PU : {{ produit.prix }} FCFA</span></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
@@ -34,12 +38,9 @@
 	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<button id="test" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="" id="test" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
-	    							</button>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
+	    							</a>	    							
     							</div>
     						</div>
     					</div>

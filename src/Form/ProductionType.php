@@ -6,20 +6,16 @@ use App\Entity\Production;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProductionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nbre_mise_bas')
-            ->add('nbre_veau')
-            ->add('nbre_vivant')
-            ->add('nbre_mort')
-            ->add('taux_production')
-            ->add('taux_mortalite')
-            ->add('date_production')
+            ->add('nbre_mort', TextType::class,['label' => 'Nombre de mort'])
             ->add('bovin')
+            ->add('date_production')            
         ;
     }
 

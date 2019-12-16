@@ -16,6 +16,10 @@ use App\Repository\DetailsCommandeRepository;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
+
+use App\Entity\Facture;
+use App\Form\FactureType;
+use App\Repository\FactureRepository;
 use App\Service\CartService;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,45 +38,72 @@ class ModalController extends AbstractController
     }
 
     /**
-     * @Route("/addClient/{tel}", name="cmd_addClient")
+     * @Route("/addClient/", name="cmd_addClient")
      */
-    public function addClient($tel)
-    {        
-            $cartService=new CartService();
+    public function addClient(CartService $cartService)
+    {                    
             $client = new Client();
-            $pro= new Produit();
-            dump($client);
-            dump($cartService->getFullCart());
-            die();
-        $client->setTel($tel);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($client);
-        $entityManager->flush();
-
+            /*echo json_encode($_POST['tel']);
+            die();*/
+           /* $pro= new Produit();
+            dump($client);*/           
+            $tel = $_POST['tel'];
+            $client->setTel($tel);
+            
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($client);
+            $entityManager->flush();
+            
+            
 
             $cmd = new Commande();
             $cmd->setClients($client);
+            
             $cmd->setDatecommande(new \DateTime());            
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cmd);
             $entityManager->flush();
+            
 
             /*$pro= new Produit();
             dump($client);
             dump($pro->getLibelle());
             die();*/
+            $items=$cartService->getFullCart();
 
-            $detailscmd =new DetailsCommande();
-            $detailscmd->setCommande($cmd);
-            $detailscmd->setProduits(); 
-            $detailscmd->setPrixUnitaire();
-            $detailscmd->setQtecommandee();           
+            $total=$cartService->getTotal();
+            
+
+            foreach ($items as $key => $value) 
+            {
+                /*dump($value['product']->getPrix());
+                dump($value['quantity']);
+                die();*/
+
+                $detailscmd =new DetailsCommande();
+                $detailscmd->setCommande($cmd);
+                $detailscmd->setProduits($value['product']); 
+                $detailscmd->setPrixUnitaire($value['product']->getPrix());
+                $detailscmd->setQtecommandee($value['quantity']);           
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($detailscmd);
+                $entityManager->flush();                
+            }        
+            
+            
+            $facture =new Facture();
+            $facture->setCommande($cmd);
+            $facture->setMontant($total);
+            $facture->setDateFacture(new \DateTime());  
+                      
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($detailscmd);
+            $entityManager->persist($facture);
+             
             $entityManager->flush();
-        
-        return $this->redirectToRoute('commander');
+            echo json_encode($client->getId());
+            die(); 
     }
 }
