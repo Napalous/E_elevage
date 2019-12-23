@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/font-icons.css') }}" type="text/css" />
+      <title>{% block title %}Welcome!{% endblock %}</title>
+          {% block stylesheets %}{% endblock %}
+    </head>
+    <style>
+.height {
+    min-height: 200px;
+}
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
+}
+
+.iconbig {
+    font-size: 77px;
+    color: #5CB85C;
+}
+
+.table > tbody > tr > .emptyrow {
+    border-top: none;
+}
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
+}
+
+@media print{
+  #imprimer{
+    display: none;
+  }
+}
+</style>
+  <body>
+      <div class="container" id="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-xs-center" id="titlefact">
+                <i class="fa fa-search-plus float-xs-left icon"></i>
+                <h2>Facture #{{ facture.id }}</h2>
+            </div>
+            <hr>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header">
+                    <h3 class="text-xs-center" id="client"><strong>Les commandes du client: {{ facture.commande.clients.tel }}</strong></h3>
+                    <a class="btn btn-warning" id="imprimer" href=""><i class="icon-print1"></i>&nbsp;Imprimer</a>
+                </div>
+                <div class="card-block" id="tablecmd">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <td><strong>Produit</strong></td>
+                                    <td class="text-xs-center"><strong>Prix Unitaire</strong></td>
+                                    <td class="text-xs-center"><strong>Catégorie</strong></td>
+                                    <td class="text-xs-center"><strong>Quantité</strong></td>
+                                    <td class="text-xs-right"><strong>Total</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>  
+                            {% for dt in details %}                             
+                                <tr>
+                                    <td>{{dt.produits}}</td>
+                                    <td class="text-xs-center">{{dt.produits.prix}} FCFA</td>
+                                    <td class="text-xs-center">{{dt.produits.categories}}</td>
+                                    <td class="text-xs-center">{{dt.qtecommandee}}</td>
+                                    <td class="text-xs-right">{{dt.produits.prix*dt.qtecommandee}}</td>
+                                </tr>
+                            {% endfor %}                                                                                           
+                                <tr>
+                                    <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+                                    <td class="emptyrow"></td>
+                                    <td class="emptyrow"></td>
+                                    <td class="emptyrow text-xs-center"><strong>Total</strong></td>
+                                    <td class="emptyrow text-xs-right">{{ facture.montant }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer">
+
+      <!-- Copyrights
+      ============================================= -->
+      <div id="copyrights">
+
+        <div class="container clearfix">
+
+          <div class="col_half">
+            Copyrights &copy; 2019 Tarbiat Almashia.<br>            
+          </div>        
+
+        </div>
+
+      </div><!-- #copyrights end -->
+
+    </footer>
+
+  </body>
+</html>

@@ -3,6 +3,24 @@
 {% block title %}New Production{% endblock %}
 
 {% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Stockage du Lait</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('production_index') }}"><div>lister la production animale pour chaque vache</div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
 <section id="content">
 
 		<div class="content-wrap bg-light">
@@ -26,5 +44,4 @@
 			</div>
 
 		</section>
-    <a href="{{ path('production_index') }}">back to list</a>
 {% endblock %}

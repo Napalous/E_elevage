@@ -9,7 +9,12 @@
 
                 <div class="container clearfix">
 
-                    <div class="menu-title"><span>Liste des Races</span></div>                                       
+                    <div class="menu-title"><span>Liste des Races</span></div>
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('race_new') }}"><div>Création de la race </div></a></li>                            
+                        </ul>
+                    </nav>                                        
 
                 </div>
 
@@ -56,5 +61,4 @@
             </div>
 
         </section>
-    <a href="{{ path('race_new') }}">Create new</a>
 {% endblock %}

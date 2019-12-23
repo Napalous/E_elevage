@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Livraison;
+use App\Entity\Stock;
 use App\Form\LivraisonType;
 use App\Repository\LivraisonRepository;
+use App\Repository\ProduitRepository;
+use App\Repository\DetailsCommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,16 +31,52 @@ class LivraisonController extends AbstractController
     /**
      * @Route("/new", name="livraison_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,DetailsCommandeRepository $detailsCommandeRepository,ProduitRepository $produiteRepository): Response
     {
         $livraison = new Livraison();
         $form = $this->createForm(LivraisonType::class, $livraison);
         $form->handleRequest($request);
+        $entityManagers = $this->getDoctrine()->getManager();
+        $guic = $entityManagers->getRepository(Stock::class)->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($livraison);
             $entityManager->flush();
+
+            if(count($guic)==0)
+            {
+
+            }
+            else
+            {
+                $tab = [];
+                $_tab = [];
+                $compteur = [];
+                foreach($guic as $tab)
+                {
+                    $_tab['quantite'] = $tab->getQuantite();
+                }
+
+
+                $pro=$produiteRepository->findBy(['libelle' => 'lait']);
+            //dump($pro);
+           $dt=$detailsCommandeRepository->findBy([
+                'commande' => $livraison->getCommande(),
+                'produits'=> $pro
+            ]);
+
+                $stock = new Stock();
+                $stock->setQuantite($_tab['quantite']-$dt[0]->getQtecommandee());
+                $stock->setDateStock(new \DateTime());
+                $stock->setLaits(null);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($stock);
+                $entityManager->flush();
+            }
+
+            //dump($livraison->getCommande());            
 
             return $this->redirectToRoute('livraison_index');
         }

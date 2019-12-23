@@ -66,6 +66,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        //dump($user);
+          //  die();
 
         if (!$user) {
             // fail authentication with a custom error
@@ -74,7 +76,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
         if (!$user->getActive()) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException("Votre compte est bloqué, veuillez contacter l'administrateur.");
+            throw new CustomUserMessageAuthenticationException("Votre compte est bloqué, veuillez contacter l'administrateur.");            
         }
 
         return $user;

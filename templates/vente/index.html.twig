@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vente index{% endblock %}
+
+{% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Les ventes</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('vente_new') }}"><div>Reseigner une vente </div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
+<section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="table-responsive">
+
+    <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">        <thead>
+            <tr>
+                <th>Bovin</th>
+                <th>Catégorie</th>
+                <th>Prix</th>
+                <th>Date de la vente</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vente in ventes %}
+            <tr>
+                <td>{{ vente.bovins }}</td>
+                <td>{{ vente.bovins.categories.libelle }}</td>
+                <td>{{ vente.prix }}</td>
+                <td>{{ vente.createAt ? vente.createAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('vente_show', {'id': vente.id}) }}"><i class="icon-eye"></i>&nbsp;</a>
+                    <a class="btn btn-warning" href="{{ path('vente_edit', {'id': vente.id}) }}"><i class="icon-pencil"></i>&nbsp;</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+</div>
+
+                </div>
+
+            </div>
+
+        </section>
+    <a href="{{ path('vente_new') }}">Create new</a>
+{% endblock %}

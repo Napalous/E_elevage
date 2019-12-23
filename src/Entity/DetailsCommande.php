@@ -88,4 +88,5 @@ class DetailsCommande
 
         return $this;
     }
+
 }

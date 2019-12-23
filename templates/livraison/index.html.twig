@@ -3,24 +3,50 @@
 {% block title %}Livraison index{% endblock %}
 
 {% block body %}
-    <h1>Livraison index</h1>
+<div id="page-menu">
 
-    <table class="table">
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Liste des Livraisons</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('livraison_new') }}"><div>Renseigner les livraisons</div></a></li>                            
+                        </ul>
+                    </nav>                                      
+
+                </div>
+
+            </div>
+
+        </div>
+<section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="table-responsive">
+
+    <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Date_livraison</th>
+                <th>N° Commande</th>
+                <th>N° Client</th>
+                <th>Date livraison</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for livraison in livraisons %}
             <tr>
-                <td>{{ livraison.id }}</td>
+                <td>{{ livraison.commande }}</td>
+                <td>{{ livraison.commande.clients.tel }}</td>
                 <td>{{ livraison.dateLivraison ? livraison.dateLivraison|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('livraison_show', {'id': livraison.id}) }}">show</a>
-                    <a href="{{ path('livraison_edit', {'id': livraison.id}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('livraison_show', {'id': livraison.id}) }}"><i class="icon-line-eye"></i>&nbsp;</a>
+                    <a class="btn btn-warning" href="{{ path('livraison_edit', {'id': livraison.id}) }}"><i class="icon-pencil"></i>&nbsp;</a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +56,11 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
-    <a href="{{ path('livraison_new') }}">Create new</a>
+                </div>
+
+            </div>
+
+        </section>
 {% endblock %}

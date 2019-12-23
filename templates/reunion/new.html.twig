@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reunion{% endblock %}
+
+{% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Fixer une Réunion</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('reunion_index') }}"><div>lister les réunions</div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
+    	<section id="content">
+
+		<div class="content-wrap bg-light">
+
+			<div class="container">
+
+				<div class="row justify-content-center">
+					<div class="col-lg-7 col-md-10">
+						<div class="card shadow-sm">
+							<div class="card-header">
+									<h4 class="mb-0">Fixer une Réunion</h4>
+								</div>	
+
+    {{ include('reunion/_form.html.twig') }}
+
+      </div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+{% endblock %}

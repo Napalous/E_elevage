@@ -3,6 +3,24 @@
 {% block title %}New Type{% endblock %}
 
 {% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Création de type de Bovin</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('type_index') }}"><div>lister les types</div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
  	<section id="content">
 
 		<div class="content-wrap bg-light">
@@ -26,5 +44,4 @@
 			</div>
 
 		</section>
-    <a href="{{ path('type_index') }}">back to list</a>
 {% endblock %}

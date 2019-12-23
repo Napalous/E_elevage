@@ -4,6 +4,24 @@
 {% block title %}New Bovin{% endblock %}
 
 {% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Création du Bovin</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('bovin_index') }}"><div>lister bovin</div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
 	<section id="content">
 
 		<div class="content-wrap bg-light">
@@ -14,7 +32,7 @@
 					<div class="col-lg-7 col-md-10">
 						<div class="card shadow-sm">
 							<div class="card-header">
-									<h4 class="mb-0">Création du Bovin</h4>
+									<h4 class="mb-0"></h4>
 								</div>
 
     {{ include('bovin/_form.html.twig') }}
@@ -27,5 +45,4 @@
 			</div>
 
 		</section>
-    <a href="{{ path('bovin_index') }}">back to list</a>
 {% endblock %}

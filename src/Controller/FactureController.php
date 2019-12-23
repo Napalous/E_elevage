@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Facture;
 use App\Form\FactureType;
 use App\Repository\FactureRepository;
+use App\Repository\DetailsCommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,16 @@ class FactureController extends AbstractController
     public function index(FactureRepository $factureRepository): Response
     {
         return $this->render('facture/index.html.twig', [
+            'factures' => $factureRepository->findAll(),
+        ]);
+    }
+
+     /**
+     * @Route("/imprimer", name="impression", methods={"GET"})
+     */
+    public function index2(FactureRepository $factureRepository): Response
+    {
+        return $this->render('facture/index2.html.twig', [
             'factures' => $factureRepository->findAll(),
         ]);
     }
@@ -55,6 +66,21 @@ class FactureController extends AbstractController
     {
         return $this->render('facture/show.html.twig', [
             'facture' => $facture,
+        ]);
+    }
+
+     /**
+     * @Route("/imprimer/{id}", name="facture_impression", methods={"GET"})
+     */
+    public function show2(DetailsCommandeRepository $detailsRepository,Facture $facture): Response
+    {
+       /* dump($facture->getCommande());
+        dump($detailsRepository->findBy(['commande' => $facture->getCommande()]));
+        //dump($detailsRepository->getProduits());
+        die();*/
+        return $this->render('facture/index2.html.twig', [
+            'facture' => $facture,
+            'details' => $detailsRepository->findBy(['commande' => $facture->getCommande()]),
         ]);
     }
 

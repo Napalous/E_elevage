@@ -81,6 +81,11 @@ class Bovin
      */
     private $bovins;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vente", mappedBy="bovins")
+     */
+    private $ventes;
+
     public function __construct()
     {
         $this->traitemnts = new ArrayCollection();
@@ -88,6 +93,7 @@ class Bovin
         $this->production = new ArrayCollection();
         $this->laits = new ArrayCollection();
         $this->bovins = new ArrayCollection();
+        $this->ventes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -338,5 +344,36 @@ class Bovin
     {
         return (string)$this->numero_ordre;
     }
+
+     /**
+      * @return Collection|Vente[]
+      */
+     public function getVentes(): Collection
+     {
+         return $this->ventes;
+     }
+
+     public function addVente(Vente $vente): self
+     {
+         if (!$this->ventes->contains($vente)) {
+             $this->ventes[] = $vente;
+             $vente->setBovins($this);
+         }
+
+         return $this;
+     }
+
+     public function removeVente(Vente $vente): self
+     {
+         if ($this->ventes->contains($vente)) {
+             $this->ventes->removeElement($vente);
+             // set the owning side to null (unless already changed)
+             if ($vente->getBovins() === $this) {
+                 $vente->setBovins(null);
+             }
+         }
+
+         return $this;
+     }
  
 }

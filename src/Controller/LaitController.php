@@ -6,8 +6,11 @@ use App\Entity\Lait;
 use App\Form\LaitType;
 use App\Repository\LaitRepository;
 use App\Entity\Stock;
+use App\Entity\Bovin;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Form\StockType;
 use App\Repository\StockRepository;
+use App\Repository\BovinRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,10 +34,22 @@ class LaitController extends AbstractController
     /**
      * @Route("/new", name="lait_new", methods={"GET","POST"})
      */
-    public function new(Request $request,StockRepository $stockRep): Response
+    public function new(Lait $lait=null,Request $request,StockRepository $stockRep,BovinRepository $bovinRep): Response
     {
-        $lait = new Lait();
-        $form = $this->createForm(LaitType::class, $lait);
+        if(!$lait){
+            $lait = new Lait();
+        }
+        
+        $form = $this->createFormBuilder($lait)
+                    ->add('quantite') 
+                    ->add('date_production')                   
+                    ->add('bovin',EntityType::class,[
+                        'class' => Bovin::class,
+                        'choices' => $bovinRep->findBy(['sexe' => 'F']),
+                        'expanded' => false,
+                        'multiple' => false,
+                    ])
+                    ->getForm();
         $form->handleRequest($request);
         $entityManagers = $this->getDoctrine()->getManager();
         $guic = $entityManagers->getRepository(Stock::class)->findAll();

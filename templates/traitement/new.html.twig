@@ -3,6 +3,24 @@
 {% block title %}New Traitement{% endblock %}
 
 {% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Proposition de Traitement</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('traitement_index') }}"><div>lister les traitement</div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
 	<section id="content">
 
 		<div class="content-wrap bg-light">
@@ -25,5 +43,4 @@
 			</div>
 
 		</section>
-    <a href="{{ path('traitement_index') }}">back to list</a>
 {% endblock %}

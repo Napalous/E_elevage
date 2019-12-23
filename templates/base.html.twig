@@ -20,12 +20,14 @@
 	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css" />
 
 	<link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ asset('css/components/bs-datatable.css') }}" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1 , maximum-scale=1" />
 
 	<link rel="stylesheet" href="{{ asset('css/colors.php?color=c0bb62') }}" type="text/css" />
     <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+{% endblock %}
     </head>
     <body class="stretched">
         <div id="wrapper" class="clearfix">
@@ -36,8 +38,8 @@
 				<!-- Logo
 				============================================= -->
 				<div id="logo" class="divcenter">
-					<a href="{{ path('home')}}" class="standard-logo"><img class="divcenter" src="{{ asset('demos/agency/images/logo-agency.png') }}" alt="Canvas Logo"></a>
-					<a href="{{ path('home')}}" class="retina-logo"><img class="divcenter" src="{{ asset('demos/agency/images/logo-agency@2x.png') }}" alt="Canvas Logo"></a>
+					<a href="{{ path('home')}}" class="standard-logo"><img class="divcenter" src="{{ asset('demos/agency/images/1.png') }}" alt="Canvas Logo"></a>
+					<a href="{{ path('home')}}" class="retina-logo"><img class="divcenter" src="{{ asset('demos/agency/images/1.png') }}" alt="Canvas Logo"></a>
 				</div><!-- #logo end -->
 
 			</div>
@@ -55,95 +57,118 @@
 						<ul>
 							<li class="current"><a href="{{ path('home')}}"><div>Accueil</div></a>							
 							</li>
+							{% if is_granted('ROLE_RESPONSABLE') %}
 							<li><a href="#"><div>Bovin</div></a>
 								<ul>
 									<li><a href="#"><div><i class="icon-stack"></i>Race</div></a>
 										<ul>
-											<li><a href="#"><div>Lister</div></a>											
+											<li><a href="{{ path('race_new')}}"><div>Nouvelle</div></a>											
 											</li>
-											<li><a href="#"><div>Nouvelle</div></a>									
+											<li><a href="{{ path('race_index')}}"><div>Lister</div></a>									
 											</li>											
 										</ul>
 									</li>	
 									<li><a href="#"><div><i class="icon-stack"></i>Type</div></a>
 										<ul>
-											<li><a href="#"><div>Lister</div></a>											
+											<li><a href="{{ path('type_new')}}"><div>Nouvelle</div></a>											
 											</li>
-											<li><a href="#"><div>Nouvelle</div></a>									
+											<li><a href="{{ path('type_index')}}"><div>Lister</div></a>									
 											</li>											
-										</ul>
+										</ul>														
 									</li>																	
-									
+									<li><a href="{{ path('bovin_new')}}"><div><i class="icon-stack"></i>Nouvelle</div></a>
+									<li><a href="{{ path('bovin_index') }}"><div><i class="icon-stack"></i>Lister</div></a>
 								</ul>
 							</li>
+							{% endif %}
 							<li><a href="#"><div>Production</div></a>
 								<ul>
 									<li><a href="#"><div><i class="icon-stack"></i>Animale</div></a>
 										<ul>
-											<li><a href="#"><div>Nouvelle</div></a>									
+											<li><a href="{{ path('production_new')}}"><div>Nouvelle</div></a>									
 											</li>
-											<li><a href="#"><div>Lister</div></a>											
+											<li><a href="{{ path('production_index') }}"><div>Lister</div></a>											
 											</li>																						
 										</ul>
 									</li>	
 									<li><a href="#"><div><i class="icon-stack"></i>Laitière</div></a>
 										<ul>
-											<li><a href="#"><div>Nouvelle</div></a>									
+											<li><a href="{{ path('lait_new') }}"><div>Nouvelle</div></a>									
 											</li>
-											<li><a href="#"><div>Lister</div></a>											
+											<li><a href="{{ path('lait_index') }}"><div>Lister</div></a>											
 											</li>																						
 										</ul>
-									</li>	
-									<li><a href="#"><div><i class="icon-stack"></i>Statistique</div></a>
-										<ul>
-											<li><a href="#"><div>Nouvelle</div></a>											
-											</li>
-											<li><a href="#"><div>Lister</div></a>									
-											</li>											
-										</ul>
-									</li>																
+									</li>										
 									
 								</ul>
-							</li>
+							</li>							
+							{% if is_granted('ROLE_VETERINAIRE') %}
 							<li><a href="#"><div>Santé</div></a>
 								<ul>
 									<li><a href="#"><div><i class="icon-stack"></i>Fiche Médicale</div></a>
 										<ul>
-											<li><a href="#"><div>Nouvelle</div></a>									
+											<li><a href="{{ path('fiche_medicale_new') }}"><div>Nouvelle</div></a>									
 											</li>
-											<li><a href="#"><div>Lister</div></a>											
+											<li><a href="{{ path('fiche_medicale_index') }}"><div>Lister</div></a>											
+											</li>																						
+										</ul>
+									</li>										
+									<li><a href="#"><div><i class="icon-stack"></i>Traitement</div></a>
+										<ul>
+											<li><a href="{{ path('traitement_new') }}"><div>Nouvelle</div></a>									
+											</li>
+											<li><a href="{{ path('traitement_index') }}"><div>Lister</div></a>											
 											</li>																						
 										</ul>
 									</li>	
-									<li><a href="#"><div><i class="icon-stack"></i>Traitement</div></a>
-										<ul>
-											<li><a href="#"><div>Nouvelle</div></a>									
-											</li>
-											<li><a href="#"><div>Lister</div></a>											
-											</li>																						
-										</ul>
-									</li>																	
 									
 								</ul>
 							</li>
+							{% endif %}																		{% if is_granted('ROLE_RESPONSABLE') %}		
 							<li><a href="#"><div>Produits</div></a>
 								<ul>
 									<li><a href="#"><div><i class="icon-stack"></i>Catégorie</div></a>
 										<ul>
-											<li><a href="#"><div>Nouvelle</div></a>											
+											<li><a href="{{ path('categorie_new') }}"><div>Nouvelle</div></a>											
 											</li>
-											<li><a href="#"><div>Lister</div></a>									
+											<li><a href="{{ path('categorie_index') }}"><div>Lister</div></a>									
 											</li>											
 										</ul>
+										<li><a href="{{ path('produit_new') }}"><div><i class="icon-stack"></i>Créer</div></a>
+										<li><a href="{{ path('produit_index') }}"><div><i class="icon-stack"></i>Lister</div></a>
 									</li>
-									<li><a href="#"><div><i class="icon-stack"></i>Voir Commande</div></a>
 								</ul>						
 							</li>
+							{% endif %}
+							{% if is_granted('ROLE_RESPONSABLE') %}
+							<li><a href="#"><div>Commande</div></a>
+								<ul>
+									<li><a href="{{ path('details_commande_index') }}"><div><i class="icon-stack"></i>Voir Commande</div></a></li>
+									<li><a href="{{ path('livraison_index') }}"><div><i class="icon-stack"></i>Commande livrée</div></a></li>												
+								</ul>								
+							</li>
+							<li><a href="#"><div>Vente</div></a>
+								<ul>
+									<li><a href="{{ path('vente_new') }}"><div><i class="icon-stack"></i>Reseigner vente</div></a></li>
+									<li><a href="{{ path('statistique2') }}"><div><i class="icon-stack"></i>Statistique</div></a></li>												
+								</ul>								
+							</li>
+							{% endif %}
 							<li><a href="#"><div>Réunion</div></a>
 								<ul>
-									<li><a href="#"><div>Nouvelle</div></a></li>
-									<li><a href="#"><div>Lister</div></a></li>																															
+									<li><a href="{{ path('reunion_new') }}"><div><i class="icon-stack"></i>Nouvelle</div></a></li>
+									<li><a href="{{ path('reunion_index') }}"><div><i class="icon-stack"></i>Lister</div></a></li>							
 								</ul>								
+							</li>
+							{% if is_granted('ROLE_ADMINISTRATEUR') %}
+							<li><a href="#"><div>Personnel</div></a>
+								<ul>
+									<li><a href="{{ path('user_new') }}"><div><i class="icon-stack"></i>Nouveau</div></a></li>
+									<li><a href="{{ path('user_index') }}"><div><i class="icon-stack"></i>Lister</div></a></li>							
+								</ul>								
+							</li>
+							{% endif %}
+							<li><a href="{{ path('app_logout') }}"><div><i class="icon-off"></i></div></a>								
 							</li>														
 						</ul>
 	

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FicheMedicale index{% endblock %}
+
+{% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Liste des Fiches médicales</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('fiche_medicale_new') }}"><div>Création fiche  médicale</div></a></li>                            
+                        </ul>
+                    </nav>                                      
+
+                </div>
+
+            </div>
+
+        </div>
+<section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="table-responsive">
+
+    <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Bovin</th>
+                <th>Observation</th>
+                <th>Date de consultation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fiche_medicale in fiche_medicales %}
+            <tr>
+                <td>{{ fiche_medicale.bovin.numero_ordre }}</td>
+                <td>{{ fiche_medicale.observation }}</td>
+                <td>{{ fiche_medicale.dateConsultation ? fiche_medicale.dateConsultation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('fiche_medicale_show', {'id': fiche_medicale.id}) }}">show</a>
+                    <a href="{{ path('fiche_medicale_edit', {'id': fiche_medicale.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune donnée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+                </div>
+
+            </div>
+
+        </section>
+{% endblock %}

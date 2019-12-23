@@ -9,7 +9,12 @@
 
                 <div class="container clearfix">
 
-                    <div class="menu-title"><span>Liste des Produits</span></div>                                       
+                    <div class="menu-title"><span>Liste des Produits</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('produit_new') }}"><div>Renseigner produit</div></a></li>                            
+                        </ul>
+                    </nav>                                      
 
                 </div>
 
@@ -58,5 +63,4 @@
             </div>
 
         </section>
-    <a href="{{ path('produit_new') }}">Create new</a>
 {% endblock %}

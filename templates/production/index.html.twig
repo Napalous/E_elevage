@@ -9,7 +9,12 @@
 
                 <div class="container clearfix">
 
-                    <div class="menu-title"><span>Liste des productions</span></div>                                       
+                    <div class="menu-title"><span>Liste des productions</span></div> 
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('production_new') }}"><div>Renseigner production</div></a></li>                            
+                        </ul>
+                    </nav>                                       
 
                 </div>
 
@@ -28,13 +33,13 @@
         <thead>
             <tr>
                 <th>N° Vache</th>
-                <th>Nbre_mise_bas</th>
-                <th>Nbre_veau</th>
-                <th>Nbre_vivant</th>
-                <th>Nbre_mort</th>
-                <th>Taux_production</th>
-                <th>Taux_mortalite</th>
-                <th>Date_production</th>
+                <th>Nbre mise bas</th>
+                <th>Nbre veau</th>
+                <th>Nbre vivant</th>
+                <th>Nbre mort</th>
+                <th>Taux production</th>
+                <th>Taux mortalite</th>
+                <th>Date production</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -46,12 +51,12 @@
                 <td>{{ production.nbreVeau }}</td>
                 <td>{{ production.nbreVivant }}</td>
                 <td>{{ production.nbreMort }}</td>
-                <td>{{ production.nbreVivant*100/cpt }}%</td>
-                <td>{{ production.nbreMort*100/cpt }}%</td>
+                <td>{{ (production.nbreVivant*100/cpt)|round(2, 'floor') }}%</td>
+                <td>{{ (production.nbreMort*100/cpt)|round(2, 'floor') }}%</td>
                 <td>{{ production.dateProduction ? production.dateProduction|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('production_show', {'id': production.id}) }}">show</a>
-                    <a href="{{ path('production_edit', {'id': production.id}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('production_show', {'id': production.id}) }}"><i class="icon-line-eye"></i>&nbsp;</a>
+                    <a class="btn btn-warning" href="{{ path('production_edit', {'id': production.id}) }}"><i class="icon-pencil"></i>&nbsp;</a>
                 </td>
             </tr>
         {% else %}
@@ -68,5 +73,4 @@
             </div>
 
         </section>
-    <a href="{{ path('production_new') }}">Create new</a>
 {% endblock %}

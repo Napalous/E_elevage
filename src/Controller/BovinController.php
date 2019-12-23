@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Bovin;
 use App\Form\BovinType;
 use App\Repository\BovinRepository;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Production;
 use App\Form\ProductionType;
 use App\Repository\ProductionRepository;
@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
  * @Route("/bovin")
@@ -22,8 +23,13 @@ class BovinController extends AbstractController
     /**
      * @Route("/", name="bovin_index", methods={"GET"})
      */
+
+
     public function index(BovinRepository $bovinRepository): Response
     {
+        /*$bovin=$bovinRepository->findAll();
+        dump($bovin);
+        die();*/
         return $this->render('bovin/index.html.twig', [
             'bovins' => $bovinRepository->findAll(),
         ]);
@@ -32,10 +38,31 @@ class BovinController extends AbstractController
     /**
      * @Route("/new", name="bovin_new", methods={"GET","POST"})
      */
-    public function new(Request $request,ProductionRepository $stockRep): Response
+    public function new(Bovin $bovin=null, Request $request,ProductionRepository $stockRep,BovinRepository $bovinRep): Response
     {
-        $bovin = new Bovin();
-        $form = $this->createForm(BovinType::class, $bovin);
+        if(!$bovin){
+            $bovin = new Bovin();
+        }
+        
+        $form = $this->createFormBuilder($bovin)
+                    ->add('numero_ordre')
+                    ->add('sexe', ChoiceType::class, [
+                        'choices' => [                    
+                            'Mâle' => 'M',
+                            'Femelle' => 'F',                
+                                    ]
+                        ])
+                    ->add('date_naissance')
+                    ->add('categories')
+                    ->add('races')
+                    ->add('types')
+                    ->add('bovin',EntityType::class,[
+                        'class' => Bovin::class,
+                        'choices' => $bovinRep->findBy(['sexe' => 'F']),
+                        'expanded' => false,
+                        'multiple' => false,
+                    ])
+                    ->getForm();
         $form->handleRequest($request);
 
         $entityManagers = $this->getDoctrine()->getManager();

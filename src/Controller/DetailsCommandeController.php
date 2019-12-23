@@ -20,6 +20,8 @@ class DetailsCommandeController extends AbstractController
      */
     public function index(DetailsCommandeRepository $detailsCommandeRepository): Response
     {
+        /*dump($detailsCommandeRepository->findAll());
+        die();*/
         return $this->render('details_commande/index.html.twig', [
             'details_commandes' => $detailsCommandeRepository->findAll(),
         ]);

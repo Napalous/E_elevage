@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/user")
@@ -139,4 +140,58 @@ class UserController extends AbstractController
             ]);
         }
     }
+
+    /**
+  * Require ROLE_ADMINISTRATEUR for *every* controller method in this class.
+  *
+  * @IsGranted("ROLE_ADMINISTRATEUR")
+  */
+  public function adminDashboard()
+{
+    $this->denyAccessUnlessGranted('ROLE_ADMINISTRATEUR');
+
+    // or add an optional message - seen by developers
+    $this->denyAccessUnlessGranted('ROLE_ADMINISTRATEUR', null, 'User tried to access a page without having ROLE_ADMINISTRATEUR');
+}
+/**
+  * Require ROLE_RESPONSABLE for *every* controller method in this class.
+  *
+  * @IsGranted("ROLE_RESPONSABLE")
+  */
+  public function responsableDashboard()
+{
+    $this->denyAccessUnlessGranted('ROLE_RESPONSABLE');
+
+    // or add an optional message - seen by developers
+    $this->denyAccessUnlessGranted('ROLE_RESPONSABLE', null, 'User tried to access a page without having ROLE_RESPONSABLE');
+}
+
+
+
+/**
+  * Require ROLE_VETERINAIRE for *every* controller method in this class.
+  *
+  * @IsGranted("ROLE_VETERINAIRE")
+  */
+  public function veterinaireDashboard()
+{
+    $this->denyAccessUnlessGranted('ROLE_VETERINAIRE');
+
+    // or add an optional message - seen by developers
+    $this->denyAccessUnlessGranted('ROLE_VETERINAIRE', null, 'User tried to access a page without having ROLE_VETERINAIRE');
+}
+
+/**
+  * Require ROLE_LIVREUR for *every* controller method in this class.
+  *
+  * @IsGranted("ROLE_LIVREUR")
+  */
+  public function livreurDashboard()
+{
+    $this->denyAccessUnlessGranted('ROLE_LIVREUR');
+
+    // or add an optional message - seen by developers
+    $this->denyAccessUnlessGranted('ROLE_LIVREUR', null, 'User tried to access a page without having ROLE_LIVREUR');
+}
+
 }

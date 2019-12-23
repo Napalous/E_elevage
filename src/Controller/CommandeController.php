@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use App\Repository\LivraisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,13 @@ class CommandeController extends AbstractController
     /**
      * @Route("/", name="commande_index", methods={"GET"})
      */
-    public function index(CommandeRepository $commandeRepository): Response
+    public function index(CommandeRepository $commandeRepository,LivraisonRepository $livraisonRepository): Response
     {
+        //dump($livraisonRepository->findBy(['commande'=>$commandeRepository->findAll()]));
+        //die();
         return $this->render('commande/index.html.twig', [
-            'commandes' => $commandeRepository->findAll(),
+            'commandes' => $commandeRepository->findBy(array(),array('datecommande' => 'DESC')),
+            //'commandes' => $livraisonRepository->findBy(['commande'=>$commandeRepository->findAll()]),
         ]);
     }
 

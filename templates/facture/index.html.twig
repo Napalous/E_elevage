@@ -27,19 +27,24 @@
     <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
+                <th>N° Commande</th>
+                <th>N° Client</th>
                 <th>Montant</th>
-                <th>Date_facture</th>
+                <th>Date facture</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for facture in factures %}
             <tr>
-                <td>{{ facture.montant }}</td>
+                <td>{{ facture.commande }}</td>
+                <td>{{ facture.commande.clients.tel }}</td>
+                <td>{{ facture.montant }}</td>                
                 <td>{{ facture.dateFacture ? facture.dateFacture|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('facture_show', {'id': facture.id}) }}">show</a>
-                    <a href="{{ path('facture_edit', {'id': facture.id}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('facture_show', {'id': facture.id}) }}"><i class="icon-eye"></i>&nbsp;</a>
+                    <a class="btn btn-warning" href="{{ path('facture_edit', {'id': facture.id}) }}"><i class="icon-pencil"></i>&nbsp;</a>
+                    <a class="btn btn-warning" href="{{ path('facture_impression', {'id': facture.id}) }}"><i class="icon-print1"></i>&nbsp;</a>
                 </td>
             </tr>
         {% else %}

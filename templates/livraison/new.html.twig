@@ -3,6 +3,24 @@
 {% block title %}New Livraison{% endblock %}
 
 {% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Crétion de Livraison</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('livraison_index') }}"><div>lister les livraisons</div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
 	<section id="content">
 
 		<div class="content-wrap bg-light">
@@ -26,5 +44,4 @@
 			</div>
 
 		</section>
-    <a href="{{ path('livraison_index') }}">back to list</a>
 {% endblock %}

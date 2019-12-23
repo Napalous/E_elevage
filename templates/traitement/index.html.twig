@@ -9,7 +9,12 @@
 
                 <div class="container clearfix">
 
-                    <div class="menu-title"><span>Liste des traitements</span></div>                                       
+                    <div class="menu-title"><span>Liste des traitements</span></div> 
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('traitement_new') }}"><div>Renseigner traitement</div></a></li>                            
+                        </ul>
+                    </nav>                                       
 
                 </div>
 
@@ -27,15 +32,17 @@
     <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
+                <th>Bovin</th>
                 <th>Traitement</th>
-                <th>Date_traitement</th>
+                <th>Date du traitement</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for traitement in traitements %}
             <tr>
-                <td>{{ traitement.traitement }}</td>
+                <td>{{ traitement.bovin }}</td>
+                <td>{{ traitement.traitement }}</td>                
                 <td>{{ traitement.dateTraitement ? traitement.dateTraitement|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('traitement_show', {'id': traitement.id}) }}">show</a>
@@ -44,7 +51,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -56,5 +63,4 @@
             </div>
 
         </section>
-    <a href="{{ path('traitement_new') }}">Create new</a>
 {% endblock %}

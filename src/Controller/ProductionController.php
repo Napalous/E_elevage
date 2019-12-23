@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Production;
 use App\Form\ProductionType;
 use App\Repository\ProductionRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Bovin;
 use App\Form\BovinType;
 use App\Repository\BovinRepository;
@@ -36,10 +37,22 @@ class ProductionController extends AbstractController
     /**
      * @Route("/new", name="production_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Production $production=null,Request $request,BovinRepository $bovinRep): Response
     {
-        $production = new Production();
-        $form = $this->createForm(ProductionType::class, $production);
+        if(!$production){
+            $production = new Production();
+        }
+        
+        $form = $this->createFormBuilder($production)
+                    ->add('nbre_mort')
+                    ->add('bovin',EntityType::class,[
+                        'class' => Bovin::class,
+                        'choices' => $bovinRep->findBy(['sexe' => 'F']),
+                        'expanded' => false,
+                        'multiple' => false,
+                    ])
+                    ->add('date_production')
+                    ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

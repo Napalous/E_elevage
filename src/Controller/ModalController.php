@@ -85,7 +85,7 @@ class ModalController extends AbstractController
                 $detailscmd->setCommande($cmd);
                 $detailscmd->setProduits($value['product']); 
                 $detailscmd->setPrixUnitaire($value['product']->getPrix());
-                $detailscmd->setQtecommandee($value['quantity']);           
+                $detailscmd->setQtecommandee($value['quantity']); 
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($detailscmd);

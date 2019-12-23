@@ -9,7 +9,12 @@
 
                 <div class="container clearfix">
 
-                    <div class="menu-title"><span>Laits</span></div>                                       
+                    <div class="menu-title"><span>Laits</span></div>   
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('lait_new') }}"><div>renseigner la quantités de lait pour chaque vache</div></a></li>                            
+                        </ul>
+                    </nav>                                    
 
                 </div>
 
@@ -58,5 +63,4 @@
             </div>
 
         </section>
-    <a href="{{ path('lait_new') }}">Create new</a>
 {% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reunion index{% endblock %}
+
+{% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Liste de Réunion</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('reunion_new') }}"><div>Fixer une réunion </div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
+<section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="table-responsive">
+
+    <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Sujet</th>
+                <th>Description</th>
+                <th>Date de reunion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set n = 0 %}
+        {% for reunion in reunions %}
+        {% if reunion.dateReunion ? reunion.dateReunion|date('d-m-Y') >= "now"|date('Y/m/d') %}
+            <tr>
+                <td>{{ reunion.sujet }}</td>
+                <td>{{ reunion.description }}</td>
+                <td><span class="badge badge-danger">{{ reunion.dateReunion ? reunion.dateReunion|date('d-m-Y à H:i:s') : '' }}</span></td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('reunion_show', {'id': reunion.id}) }}"><i class="icon-eye"></i>&nbsp;</a>
+                    <a class="btn btn-warning" href="{{ path('reunion_edit', {'id': reunion.id}) }}"><i class="icon-pencil"></i>&nbsp;</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+                </div>
+
+            </div>
+
+        </section>
+{% endblock %}

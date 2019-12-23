@@ -7,17 +7,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProduitRepository;
 use App\Service\CartService;
+use App\Repository\StockRepository;
 
 class CartController extends AbstractController
 {
     /**
      * @Route("/panier", name="cart_index")
      */
-    public function index(CartService $cartService)
+    public function index(CartService $cartService,StockRepository $stockRepository)
     {
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(),
-            'total' => $cartService->getTotal()
+            'total' => $cartService->getTotal(),
+            'stock' => $stockRepository->findBy(array(),array('id'=>'DESC'),1)
         ]);
     }
 

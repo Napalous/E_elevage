@@ -23,9 +23,9 @@ class UserType extends AbstractType
                     'Administrateur' => 'ROLE_ADMINISTRATEUR',
                     'Vétérinaire' => 'ROLE_VETERINAIRE',
                     'Responsable' => 'ROLE_RESPONSABLE',
-                    'Livreur' => 'ROLE_LIVREUR',                    
-                    'Default' => null,
+                    'Livreur' => 'ROLE_LIVREUR',                                        
                 ],
+                'multiple' => true,
                 'choice_label' => function ($choice, $key, $value) {
                     if (true === $choice) {
                         return 'Definitely!';

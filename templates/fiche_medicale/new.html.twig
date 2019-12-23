@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New FicheMedicale{% endblock %}
+
+{% block body %}
+<div id="page-menu">
+
+            <div id="page-menu-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="menu-title"><span>Création de Fiche médicale</span></div>  
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="{{ path('fiche_medicale_index') }}"><div>lister les fiches médicales</div></a></li>                            
+                        </ul>
+                    </nav>                                     
+
+                </div>
+
+            </div>
+
+        </div>
+    	<section id="content">
+
+		<div class="content-wrap bg-light">
+
+			<div class="container">
+
+				<div class="row justify-content-center">
+					<div class="col-lg-7 col-md-10">
+						<div class="card shadow-sm">
+							<div class="card-header">
+									<h4 class="mb-0">Création de Fiche médicale</h4>
+								</div>	
+
+    {{ include('fiche_medicale/_form.html.twig') }}
+    </div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+{% endblock %}
